@@ -15,12 +15,8 @@ Using Cucumber, Selenium, and Java, create a few scenarios to achieve this funct
 
 Clone project to any folder **without spaces/not ascii symbols on it**, eg: `c:\Users\name`
 
-* if you use SSH:
+* HTTPS:
     ```bash
-        git clone
-    ```
-* or via HTTPS:
-    ```bash
-        git clone
+        git clone https://github.com/willokans/JPMC-news-framework.git
     ```
 Git should create a folder called `JPMC [news-framework]` with all the files in it.
