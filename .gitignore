@@ -1,0 +1,13 @@
+/target/
+**/*.iml
+**/*.log
+**/*.ipr
+**/*.iws
+/.idea/
+/build/
+.vscode/settings.json
+
+.classpath
+.factorypath
+.project
+/settings/
