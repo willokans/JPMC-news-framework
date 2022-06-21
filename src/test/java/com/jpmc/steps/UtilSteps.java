@@ -4,6 +4,7 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.util.TestBase;
+import com.util.Urls;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 
@@ -48,14 +49,14 @@ public class UtilSteps extends TestBase {
 
     public void getNewsURL(String feed, String searchNewsWord, ArrayList<String> createSentence){
         if (feed.contains("Times")){
-            open("https://www.thetimes.co.uk/");
+            open(Urls.getURL("Times"));
             searchOtherNewsPageForSimilarNews(searchNewsWord, "//h3/a", feed, createSentence);
         }else if (feed.contains("Telegraph")){
-            open("https://www.telegraph.co.uk/");
+            open(Urls.getURL("Telegraph"));
             searchOtherNewsPageForSimilarNews(searchNewsWord, "//h3/a", feed, createSentence);
         }
         else if (feed.contains("BBC")) {
-            open("https://www.bbc.co.uk/");
+            open(Urls.getURL("BBC"));
             searchOtherNewsPageForSimilarNews(searchNewsWord, "//a/span/p", feed, createSentence);
         }
     }

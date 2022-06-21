@@ -1,6 +1,7 @@
 package com.jpmc.pages;
 
 import com.codeborne.selenide.Selenide;
+import com.util.Urls;
 
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.open;
@@ -8,7 +9,7 @@ import static com.codeborne.selenide.Selenide.open;
 public class GooglePage {
 
     public void searchGoogle(String searchNews){
-        open("https://www.google.com/");
+        open(Urls.getURL("google"));
         if ($x("//div[text()='Accept all']").isDisplayed())
             $x("//div[text()='Accept all']").click();
 

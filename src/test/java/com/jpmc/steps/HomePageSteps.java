@@ -3,9 +3,15 @@ package com.jpmc.steps;
 import com.codeborne.selenide.*;
 import com.jpmc.pages.GooglePage;
 import com.jpmc.pages.HomePage;
+import com.util.Urls;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import org.junit.Assert;
+
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 import static com.codeborne.selenide.Selenide.*;
@@ -20,7 +26,7 @@ public class HomePageSteps extends UtilSteps{
 
     @Given("{} navigate to The Guardian news feed page")
     public void navigateToNewsFeedPage(String user) {
-        open("https://www.theguardian.com/tone/news");
+        open(Urls.getURL("theguardian"));
         //Selenide.executeJavaScript("argument[0].click();","return document.querySelector('div.site-message--banner').shadowRoot.querySelector('button')");
         //homePage.closeAlart();
         Selenide.clearBrowserCookies();
@@ -40,7 +46,7 @@ public class HomePageSteps extends UtilSteps{
         searchGooglePageForSimilarNews("//a/h3", searchNews[0]);
     }
 
-    @Then("{} can confirm the validity on the article on the following source {}")
+    @Then("{} can confirm the validity of the article on the following source {}")
     public void UserCanConfirmTheValidityOnTheArticleOnTheFollowingSource(String user, String feed) {
         String searchNewsWord = createSearchWordFromNewsFeed(NEWS_FEED_HEADLINE);
         ArrayList<String> arrayListOfNewsFeeds = getSearchWords(searchNewsWord);
@@ -53,5 +59,19 @@ public class HomePageSteps extends UtilSteps{
             arrayListOfNewsFeeds.add(searchNewsWord);
         }
         return arrayListOfNewsFeeds;
+    }
+
+    @Given("{} navigate to a broken Guardian link")
+    public void johnNavigateToAGuardianNewsFeedPage(String url_state) {
+       RestAssured.get(Urls.getURL("broken_url_guardian"));
+    }
+
+    @Then("{} can't access The Guardian news")
+    public void johnCanTAccessTheGuardianNews(String user) {
+        try {
+            RestAssured.get(Urls.getURL("broken_url_guardian"));
+        }catch (Exception unknownHostException){
+            Assert.assertTrue("Error should be thrown to user", !unknownHostException.getMessage().isEmpty());
+        }
     }
 }

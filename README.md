@@ -11,6 +11,19 @@ article is valid.
 
 Using Cucumber, Selenium, and Java, create a few scenarios to achieve this functionality.
 
+## Framework Stack
+
+> ***Java Programming Language***
+> 
+> ***Selenium Webdriver***: a library for web automation
+> 
+> ***Selenide***: a wrapper of Selenium WebDriver
+> 
+> ***RestAssured***: Used for testing and validating REST services
+> 
+> ***JUnit***: Unit tesitng framework
+
+
 ## Clone project from any folder
 
 Clone project to any folder **without spaces/not ascii symbols on it**, eg: `c:\Users\name`
@@ -72,3 +85,4 @@ Excecute this line to generate report
 ```
 allure serve allure-results
 ```
+![Allure Report](img/allure-report.png)
