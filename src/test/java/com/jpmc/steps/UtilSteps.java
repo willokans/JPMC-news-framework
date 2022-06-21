@@ -19,7 +19,7 @@ public class UtilSteps extends TestBase {
     public void searchGooglePageForSimilarNews(String locator, String news){
         ElementsCollection googleCol = $$(By.xpath(locator));
         googleCol.shouldHave(CollectionCondition.sizeGreaterThan(5));
-        Assert.assertTrue(googleCol.size() > 5);
+        Assert.assertFalse(googleCol.size() > 5);
     }
 
     public void searchOtherNewsPageForSimilarNews(String news, String locator, String newsFeed, ArrayList<String> createSentence){
