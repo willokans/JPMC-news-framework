@@ -20,3 +20,55 @@ Clone project to any folder **without spaces/not ascii symbols on it**, eg: `c:\
         git clone https://github.com/willokans/JPMC-news-framework.git
     ```
 Git should create a folder called `JPMC [news-framework]` with all the files in it.
+
+## Run Framework
+
+### 1. Via IntelliJ Idea runner
+To run any test from IntelliJ, all you need to do is right click on the feature file
+or the Scenario and select:
+```
+Run 'Feature: X...'
+OR
+Run 'Scenario: X...'
+```
+
+### 2. Via Maven cmd
+```
+mvn clean verify -Dcucumber.options" --tags @tag_name_for_test --glue com.jpmc.steps
+```
+
+You can also add **-Dselenide=headless=true** to run browser in headless mode
+
+To run on a different browsers other than chrome, pass below option to you mvn cmd line
+```
+-Dselenide.browser="browser name"
+```
+
+### For launching test through Java Class runner
+
+Find the following java class in class **TestRunner.java**
+```java
+@RunWith(Cucumber.class)
+@CucumberOptions(
+        features = {"src/test/resources/features"},
+        glue = {"com.jpmc.steps"},
+        monochrome = false,
+        plugin = {"pretty",
+                "html:target/cucumber-html-report",
+                "json:target/cucumber-reports/cucumber.json",
+                "junit:tartget/cucumber-reports/cucumber.xml",
+                "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"}
+
+)
+public class TestRunner {}
+```
+### 3. Allure reports
+
+Implementing allure reports allow for a flexible, lightweight test reporting tool.
+It provides a clear graphical report.
+All data gathered from you target folder after running the test via Maven is used to generate a report.
+
+Excecute this line to generate report
+```
+allure serve allure-results
+```

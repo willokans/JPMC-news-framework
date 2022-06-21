@@ -6,6 +6,12 @@
 /.idea/
 /build/
 .vscode/settings.json
+/allure-results/
+.DS_Store
+/tartget/
+
+
+
 
 .classpath
 .factorypath
